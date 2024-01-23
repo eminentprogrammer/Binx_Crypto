@@ -1,7 +1,101 @@
 {% extends "base.html" %}
 {% load static %}
 
-
 {% block content %}
+    <!-- Hero Section -->
+    <div class="headline" id="headline">
+        <div class="row">
+            <div class="col-12 col-md-6 my-auto">
+                <div class="c-hero">
+                    <div class="c-hero__heading headline text-center">
+                        <span style="font-size: 25px">TRADE</span> <br><span class="fw-bold">BTC, USDT, & USDC,</span><br> <span style="font-size: 22px">WITH BEST RATE</span>
+                        <h4 class="text-muted" style="font-size: 6px;">Binx Crypto</h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-4 map mx-auto" id="map">
+                <div class="img-fluid text-center">
+                    <img src="{% static 'images/worldMap.png' %}" alt="binx_crypto" class="img-fluid" width="100%">
+                </div>
+            </div>
+        </div>
+    </div>
 
+    <!-- About Us -->
+    <!-- Description Card Section -->
+    <div class="container" style="padding-top: 0px">
+        <div class="row mt-sm-5 mt-md-0">
+            <div class="col-10 col-md-4 mt-sm-5 mt-md-0">
+                <div class="card border-0 bg-transparent">
+                    <div class="testcard-section">
+                        <div class="img-fluid test-card-1">
+                            <img src="{% static 'images/Credit Card.png' %}" alt="" width="100px">
+                        </div>
+                        <div class="img-fluid test-card-2 bg-transparent" id="test-card2">
+                            <img src="{% static 'images/testcard2.png' %}" alt="" width="100px">
+                        </div>
+                        <div class="img-fluid test-card-3" id="test-card3">
+                            <img src="{% static 'images/testcard.png' %}" alt="" width="100px">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col"></div>
+            <div class="col-10 col-md-6 mt-5 mx-auto">
+                <div class="c-hero">
+                    <div class="header-2">
+                        Delight customers with a seamless payments experience
+                    </div>
+                    <div class="description-text">
+                        Give your customers the gift of modern, frictionless, painless payments. Integrate Paystack once
+                        and let your customers pay you however they want.<br>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Test Card Section -->
+    <div class="container mb-5 section-2 mt-5">
+        <div class="row mx-auto">
+            <div class="col-10 col-md-6 mt-5 mx-auto">
+                <div class="c-hero">
+                    <div class="header-2">
+                        Best user experience
+                    </div>
+                    <div class="description-text">
+                        Give your customers the gift of modern, frictionless, painless payments. Integrate Paystack once
+                        and let your customers pay you however they want.
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 mt-5 mx-auto">
+                <div class="img-fluid">
+                    <img src="{% static 'images/Wallet App Design.png' %}" alt="" class="w-100 rounded">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container section-2 mb-5">
+        <div class="row mx-auto">
+            <div class="col-10 col-md-6 mt-5 mx-auto">
+                <div class="c-hero">
+                    <div class="header-2">
+                        Build custom payments experiences with well-documented APIs
+                    </div>
+                    <div class="description-text">
+                        Developers love our thorough, well-documented APIs that let you to build everything from simple
+                        weekend projects, to complex financial products serving hundreds of thousands of customers. If
+                        you can imagine it, you can build it with Paystack.
+                    </div>
+                </div>
+            </div>
+            <div class="col-10 col-md-6 mt-5 mx-auto">
+                <div class="img-fluid text-center">
+                    <img src="https://i.gifer.com/W31X.gif" alt="" class="w-50">
+                </div>
+            </div>
+        </div>
+    </div>
 {% endblock  %}
