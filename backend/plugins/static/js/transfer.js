@@ -1,5 +1,5 @@
 
-fetch("http://localhost:8000/get_banks/", {
+fetch("/get_banks/", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
