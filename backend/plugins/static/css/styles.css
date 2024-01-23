@@ -1,0 +1,13 @@
+*{
+    --primary-color: #45c456;
+    --sceondary-color: #642aa1;
+}
+
+.dark-theme{
+    background: var(--primary-dark-color);
+    color: var(--primary-light-color)
+}
+.light-theme{
+    background: var(--primary-light-color);
+    color: var(--primary-dark-color)
+}

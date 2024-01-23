@@ -1,0 +1,44 @@
+{% load static %}
+<nav class="navbar navbar-expand-md px-2">
+    <div class="container px-5">
+        <a class="navbar-brand text-light fw-bold" href="{% url 'homepage' %}">
+            <img class="img-fluid animate__animated animate__zoomIn" src="{% static 'images/binx2_.png' %}" alt="" srcset="" width="150px" draggable="false"/>
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <div id="bar"></div>
+            <div id="bar"></div>
+            <div id="bar"></div>
+        </button>
+        <div class="collapse navbar-collapse rounded my-2" id="navbarSupportedContent">
+            <hr>
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex d-md-none" style="margin-left: 10px;">
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-btn text-center" href="#">Login</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link custom-nav-btn text-center" href="#">Register</a>
+                </li>   
+            </ul>
+        </div>
+    </div>
+    <div class="rounded animate__animated animate__backInRight animate__delay-1s px-5">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-flex" style="width: 20%; display: flex; flex-direction: row; justify-content: space-between;">
+            <li class="nav-item my-auto">
+                <a class="mx-auto" href="#">
+                    <input class="btn btn-md custom-nav-btn" value="Login" type="submit">
+                </a>
+            </li>
+            <li class="p-1"></li>
+            <li class="nav-item my-auto">
+                <a class="mx-auto" href="#">
+                    <input class="btn btn-md custom-nav-btn" value="Register" type="submit">
+                </a>
+            </li>
+            <li class="nav-item my-auto">
+                <a class="mx-auto" href="#">
+                    <input class="btn btn-md custom-nav-btn" value="Bank Account" type="submit">
+                </a>
+            </li>
+        </ul>
+    </div>
+</nav>
