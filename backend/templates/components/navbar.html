@@ -11,33 +11,25 @@
             <hr>
             <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-flex d-md-none" style="margin-left: 10px;">
                 <li class="nav-item">
-                    <a class="nav-link custom-nav-btn text-center" href="#">Login</a>
-                </li>
+                    <a class="nav-link custom-nav-btn text-center" href="{% url 'data' %}">Buy Data</a>
+                </li>       
                 <li class="nav-item">
-                    <a class="nav-link custom-nav-btn text-center" href="#">Register</a>
-                </li>
-                <li class="nav-item">
-                    <a class="nav-link custom-nav-btn text-center">Bank Account</a>
+                    <a class="nav-link custom-nav-btn text-center" href="{% url 'send' %}">Transfer</a>
                 </li>       
             </ul>
         </div>
     </div>
     <div class="rounded animate__animated animate__backInRight animate__delay-1s px-5">
         <ul class="navbar-nav me-auto mb-2 mb-lg-0 d-none d-md-flex" style="width: 20%; display: flex; flex-direction: row; justify-content: space-between;">
-            <li class="nav-item my-auto">
-                <a class="mx-auto" href="#">
-                    <input class="btn btn-md custom-nav-btn" value="Login" type="submit">
-                </a>
-            </li>
             <li class="p-1"></li>
             <li class="nav-item my-auto">
-                <a class="mx-auto" href="#">
-                    <input class="btn btn-md custom-nav-btn" value="Register" type="submit">
+                <a class="mx-auto" href="{% url 'data' %}">
+                    <input class="btn btn-md custom-nav-btn" value="Buy Data" type="submit">
                 </a>
             </li>
             <li class="nav-item my-auto">
-                <a class="mx-auto" href="#">
-                    <input class="btn btn-md custom-nav-btn" value="Bank Account" type="submit">
+                <a class="mx-auto" href="{% url 'send' %}">
+                    <input class="btn btn-md custom-nav-btn" value="Transfer" type="submit">
                 </a>
             </li>
         </ul>

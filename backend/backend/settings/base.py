@@ -112,6 +112,35 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+PAYSTACK_API_URL    = env("PAYSTACK_URL")
+PAYSTACK_PUBLIC_KEY = env("PAYSTACK_LIVE_KEY")
+PAYSTACK_SECRET_KEY = env("PAYSTACK_TEST_KEY")
+
+PAYSTACK_HEADER = {
+    "Accept": "application/json, text/plain, */*",
+    "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+    "Authorization": f"Bearer {PAYSTACK_PUBLIC_KEY}",
+}
+PAYSTACK_SUCCESS_URL = "/payment/payment_successful"
+# PAYSTACK_FAILED_URL = "/google/api"
+# PAYSTACK_SUCCESS_URL = "/google/api"
+PAYSTACK_WEBHOOK_DOMAIN = 'tuteria.ngrok.io'
+
+
+KUDA_LIVE_URL   = env("KUDA_LIVE_URL")
+KUDA_TEST_URL   = env("KUDA_TEST_URL")
+KUDA_API_KEY    = env("KUDA_API_KEY")
+
+SME_TOKEN       = env("SME_TOKEN")
+
+# GMAIL CONFIGURATIONS
+EMAIL_BACKEND       = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST          = 'smtp.gmail.com'
+EMAIL_PORT          = 587  # For TLS
+EMAIL_USE_TLS       = True
+EMAIL_USE_SSL       = False  # Set to False for TLS
+EMAIL_HOST_USER     = env('EMAIL_HOST_USER')
+EMAIL_HOST_PASSWORD = env('EMAIL_HOST_PASSWORD')
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/

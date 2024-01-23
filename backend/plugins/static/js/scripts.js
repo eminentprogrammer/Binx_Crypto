@@ -1,0 +1,1 @@
+const Main=document.getElementById("main"),loader=document.getElementById("loader");window.addEventListener("load",(function(){loader.style.display="none",Main.classList.remove("d-none")}));

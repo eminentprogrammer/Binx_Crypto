@@ -11,14 +11,11 @@ body {
     overflow-y: scroll;
     position: relative;
     scroll-behavior: smooth;
+    background: #fffeff !important;
 }
 body::-webkit-scrollbar{
     display: none;
 }
-
-
-
-
 
 
 
