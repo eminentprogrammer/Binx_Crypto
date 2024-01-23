@@ -1,6 +1,7 @@
 import os
 import environ
 from pathlib import Path
+import dj_database_url
 
 env = environ.Env(DEBUG=(bool, False))
 
@@ -25,11 +26,16 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'jazzmin',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
+    'django.contrib.humanize',
+    'django.contrib.sitemaps',
+
+    'whitenoise',
     'django.contrib.staticfiles',
 
     'apps.api',
@@ -38,8 +44,28 @@ INSTALLED_APPS = [
     'apps.crypto_world',
 ]
 
+# HEALTH CHECK
+INSTALLED_APPS += [
+    # HEALTH CHECK SETTINGS
+    'health_check',
+    'health_check.contrib.psutil',
+    'health_check.db',  
+    # stock Django health checkers
+    'health_check.cache',
+    'health_check.storage',
+    'health_check.contrib.migrations',
+]
+
+HEALTH_CHECK = {
+    'DISK_USAGE_MAX': 90, #Percent
+    'MEMORY_MIN': 100, # in MB
+}
+
+HEALTH_CHECK['DISK_USAGE_MAX'] = 5 * (1 << 30)   # 5GB in bytes
+
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
