@@ -31,7 +31,6 @@
 
         <main class="container">
             <div class="app">
-
                 <section>
                     <div class="square_box box_three"></div>
                     <div class="square_box box_four"></div>
@@ -58,7 +57,7 @@
                         <h1 class="payment-card__title">Transfer</h1>
                     </div>
                     <div class="payment-card__body">
-                        <form id="payment-form" method="POST">
+                        <form id="payment-form" method="POST" class="container">
                             {% csrf_token %}
                             <select id="bank" class="form-select custom-select" mobile="true" data-live-search="true" data-width="fit">
                                 <option data-subtext="">Select Bank</option>
