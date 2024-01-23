@@ -11,28 +11,47 @@ These instructions will get you a copy of the project up and running on your loc
 
 Installing
 1) Clone the repository:
-[git clone https://github.com/yourusername/binx_crypto.git]
+```
+source git clone https://github.com/yourusername/binx_crypto.git
+```
 2) Create a virtual environment and activate it:
-[python -m venv venv
-source venv/bin/activate (on Linux/macOS)
+```
+source python -m venv venv
+```
+
+```
+source venv/bin/activate
+```
+(on Linux/macOS)
 venv\Scripts\activate (on Windows)]
 3) Install the required packages
-[pip install -r requirements.txt]
+```
+source pip install -r requirements.txt
+```
 
 4) Create a new Django secret key and update the SECRET_KEY setting in binx_crypto/settings.py.
 5) Run the database migrations:
-[python manage.py migrate]
+```
+python manage.py migrate
+```
 6) Create a new superuser account:
-[python manage.py createsuperuser]
+```
+python manage.py createsuperuser
+```
 7) Start the development server:
 [Python]
 [Code]
-[python manage.py runserver]
+```
+python manage.py runserver
+```
+
 8) Visit http://127.0.0.1:8000/ in your web browser to view the application.
 
 ## Testing
 To run the tests, use the following command
-[python manage.py test]
+```
+python manage.py test]
+```
 
 # Built With
 Django - The web framework used.
