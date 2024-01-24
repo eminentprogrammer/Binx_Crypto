@@ -1,5 +1,5 @@
 
-fetch("/get_banks/", {
+fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country=Nigeria", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
