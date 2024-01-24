@@ -19,8 +19,7 @@ fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country
         bankField.appendChild(option);
       });
   })
-  .catch(console.error);  
-  
+  .catch(console.error);
   
   const recipient_name = document.getElementById("recipient_name");
   const accountInput = document.getElementById("recipient");
@@ -33,24 +32,23 @@ fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country
           document.querySelector("#submit").click();
       }
   })
+
   document.getElementById("payment-form").addEventListener("submit", (e) => {
       e.preventDefault();
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       const data = {
           'recipient' : document.querySelector("#recipient").value,
-          'bank'     : document.querySelector("#bank").value
+          'bank'     : document.querySelector("#bank").value,
+          'token'     : document.querySelector("#token").value
       }
-      fetch("/make_transfer/", {
-          method: "POST",
-          mode: "same-origin",
-          credentials: "same-origin",
+      fetch("https://api.paystack.co/bank/resolve?account_number="+data.recipient+"&bank_code="+data.bank+"&currency=NGN", {
+          method: "GET",
           headers: {
-              "Content-Type"     : "application/json",
-              "Accept"           : "application/json, text/plain, */*",
-              "Accept-language"  : "en-GB,en-US;q=0.9,en;q=0.8",
-              "X-CSRFToken"      : csrftoken,
-          },
-          body: JSON.stringify(data)
+            "Content-Type"     : "application/json",
+            "Accept"           : "application/json, text/plain, */*",
+            "Accept-language"  : "en-GB,en-US;q=0.9,en;q=0.8",
+            "Authorization"    : "Bearer "+data.token,
+          }
       }).then(res => res.json())
       .then(res => {
           if (res.status == true){
