@@ -1,5 +1,5 @@
 
-fetch("https://binx-crypto.onrender.com/get_banks/", {
+fetch("/get_banks/", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
@@ -21,6 +21,7 @@ fetch("https://binx-crypto.onrender.com/get_banks/", {
   })
   .catch(console.error);  
   
+  
   const recipient_name = document.getElementById("recipient_name");
   const accountInput = document.getElementById("recipient");
   accountInput.addEventListener("keydown", (e) => {
@@ -39,7 +40,7 @@ fetch("https://binx-crypto.onrender.com/get_banks/", {
           'recipient' : document.querySelector("#recipient").value,
           'bank'     : document.querySelector("#bank").value
       }
-      fetch("https://binx-crypto.onrender.com/make_transfer/", {
+      fetch("/make_transfer/", {
           method: "POST",
           mode: "same-origin",
           credentials: "same-origin",
@@ -64,4 +65,4 @@ fetch("https://binx-crypto.onrender.com/get_banks/", {
           }
       })
       .catch(console.error);
-   });
+   });  

@@ -10,7 +10,7 @@ document.getElementById("payment-form").addEventListener("submit", (e) => {
         'network'   : network,
         'plan'      : dataPlan
     }
-    fetch("https://binx-crypto.onrender.com/buy_data/", {
+    fetch("/buy_data/", {
         method: "POST",
         mode: "same-origin",
         credentials: "same-origin",

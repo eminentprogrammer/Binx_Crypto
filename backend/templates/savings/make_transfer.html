@@ -54,12 +54,12 @@
                     </div>
                 </section>
 
-                <div class="payment-card">
+                <div class="payment-card container">
                     <div class="payment-card__header">
                         <h1 class="payment-card__title">Transfer</h1>
                     </div>
                     <div class="payment-card__body row">
-                        <div class="col-10 col-md-6 mx-auto">
+                        <div class="col-10 col-md-12 mx-auto">
                             <form id="payment-form" method="POST">
                                 {% csrf_token %}
                                 <select id="bank" class="form-select custom-select" mobile="true" data-live-search="true" data-width="fit">
@@ -78,6 +78,7 @@
                 </div>
             </div>
         </main>
+        
         <script src="{% static 'js/transfer.js' %}"></script>
         <script src="{% static 'js/scripts.js' %}"></script>
         <!-- Bootstrap JavaScript Libraries -->

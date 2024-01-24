@@ -18,7 +18,6 @@ def api(request):
 @csrf_exempt
 def get_banks(request):
     url = f"{baseURL}/bank?currency=NGN&transferRecipient=false&country=Nigeria"
-
     try:
         res = requests.get(url, headers=headers)
         res.json()
@@ -30,14 +29,12 @@ def get_banks(request):
         }
         return JsonResponse(response_data, safe=False)
 
-
 def make_transfer(request):
     if request.method == "POST":
         data        = json.loads(request.body)
         account     = data.get('recipient')
         bank        = data.get('bank')
         url         = f"{baseURL}/bank/resolve?account_number={account}&bank_code={bank}&currency=NGN"
-
         try:
             res = requests.get(url, headers=headers).json()
             return JsonResponse(res, safe=False)        
@@ -56,7 +53,6 @@ def make_transfer(request):
 
     
 def buy_data(request):
-
     if request.method == "POST":
         data            = json.load(request.body)
         phone           = data.recipient
