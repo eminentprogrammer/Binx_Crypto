@@ -172,13 +172,6 @@ main{
         font-weight: bold;
     }
 }
-select{
-    padding-inline: 10px;
-}
-.custom-select, .custom-input{
-    height: 60px;
-    width: 50vh !important;
-}
 select::-webkit-scrollbar{
     display: none;
     position: relative;

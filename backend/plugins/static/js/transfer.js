@@ -1,5 +1,5 @@
 
-fetch("/get_banks/", {
+fetch("https://binx-crypto.onrender.com/get_banks/", {
     method: "GET",
     headers: {
         "Content-Type": "application/json",
@@ -39,7 +39,7 @@ fetch("/get_banks/", {
           'recipient' : document.querySelector("#recipient").value,
           'bank'     : document.querySelector("#bank").value
       }
-      fetch("/make_transfer/", {
+      fetch("https://binx-crypto.onrender.com/make_transfer/", {
           method: "POST",
           mode: "same-origin",
           credentials: "same-origin",

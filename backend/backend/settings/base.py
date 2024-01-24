@@ -24,13 +24,6 @@ DEBUG = env('DEBUG')
 
 ALLOWED_HOSTS = ['*']
 # Application definition
-CORS_ORIGIN_ALLOW_ALL = True
-CORS_ORIGIN_WHITELIST = (
-    "https://binx-crypto.onrender.com",
-)
-CSRF_TRUSTED_ORIGINS = ["https://binx-crypto.onrender.com"]
-CORS_ALLOW_HEADERS = ["https://binx-crypto.onrender.com"]
-CORS_ALLOW_HEADERS = ['accept', 'accept-encoding', 'authorization', 'content-type', 'dnt', 'origin', 'user-agent', 'x-csrftoken', 'x-requested-with']
 
 INSTALLED_APPS = [
     'jazzmin',
@@ -47,6 +40,7 @@ INSTALLED_APPS = [
 
     'apps.api',
     'apps.accounts',
+    'apps.paystack',
     'apps.binx_crypto',
     'apps.crypto_world',
 ]

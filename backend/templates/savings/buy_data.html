@@ -11,10 +11,9 @@
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous"/>
         <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.6.3/css/bootstrap-select.min.css" />
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-        <link rel="stylesheet" href="{% static 'css/buy_data.css' %}" type="text/css"/>
-        <link rel="stylesheet" href="{% static 'css/styles.min.css' %}" type="text/css" />
         <link rel="stylesheet" href="{% static 'css/preload.min.css' %}" type="text/css" />
         <link rel="stylesheet" href="{% static 'css/navbar.min.css' %}" type="text/css" />
+        <link rel="stylesheet" href="{% static 'css/buy_data.css' %}" type="text/css" />
     </head>
     <body>
         <div class="active" id="loader">
@@ -58,27 +57,33 @@
                     <div class="payment-card__body">
                         <form id="payment-form" method="POST" class="container">
                             {% csrf_token %}
-                            <div class="form-group my-2">
-                                <input type="number" inputmode="tel" class="form-control custom-input" id="recipient_no" name="recipient_no" placeholder="Phone Number">
-                            </div>
-                            <select id="network" class="form-select custom-select mb-3" mobile="true" data-live-search="true" data-width="fit">
-                                <option data-subtext="" value="0">Select Network</option>
-                                <option data-subtext="" value="mtn">MTN</option>
-                                <option data-subtext="" value="glo">GLO</option>
-                                <option data-subtext="" value="airtel">AIRTEL</option>
-                                <option data-subtext="" value="9mobile">9MOBILE</option>
-                            </select>
-                            <select id="data_plan" class="form-select custom-select" mobile="true" data-live-search="true" data-width="fit">
-                                <option data-subtext="">Select Plan</option>
-                                <option data-subtext="" value="1GB">
-                                    <div class="data-option row">
-                                        <div class="col-12">1GB CG</div>
-                                        <div class="col-12">(₦400) Monthly</div>
+                            <div class="row">
+                                <div class="col-12 col-md-6 mx-auto">
+                                    <div class="form-group my-2">
+                                        <input type="number" inputmode="tel" class="form-control custom-input border-0" id="recipient_no" name="recipient_no" placeholder="Phone Number">
                                     </div>
-                                </option>
-                                <option data-subtext="" value="7GB">7GB CG (₦1200) Monthly</option>
-                            </select>
-                            <button type="submit" class="active btn btn-success my-4" id="submit"><i class="fa fa-buysellads" aria-hidden="true"></i></button>
+                                    <select id="network" class="form-select custom-select mb-3 border-0" mobile="true" data-live-search="true" data-width="fit">
+                                        <option data-subtext="" value="0">Select Network</option>
+                                        <option data-subtext="" value="mtn">MTN</option>
+                                        <option data-subtext="" value="glo">GLO</option>
+                                        <option data-subtext="" value="airtel">AIRTEL</option>
+                                        <option data-subtext="" value="9mobile">9MOBILE</option>
+                                    </select>
+                                    <select id="data_plan" class="form-select custom-select border-0" mobile="true" data-live-search="true" data-width="fit">
+                                        <option data-subtext="">Select Plan</option>
+                                        <option data-subtext="" value="1GB">
+                                            <div class="data-option row">
+                                                <div class="col-12">1GB CG</div>
+                                                <div class="col-12">(₦400) Monthly</div>
+                                            </div>
+                                        </option>
+                                        <option data-subtext="" value="7GB">7GB CG (₦1200) Monthly</option>
+                                    </select>
+                                    <button type="submit" class="btn btn-success my-4" id="submit">
+                                        BuY
+                                    </button>        
+                                </div>
+                            </div>
                         </form>
                     </div>
                 </div>

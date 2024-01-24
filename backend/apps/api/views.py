@@ -56,16 +56,16 @@ def make_transfer(request):
 
     
 def buy_data(request):
+
     if request.method == "POST":
         data            = json.load(request.body)
-        phone           = data.phone
+        phone           = data.recipient
         plan            = data.plan
         network         = data.network
         TOKEN           = SME_TOKEN
         SMEURL          = "https://smedata.ng/wp-json/api/v1"
         url             = f"{SMEURL}/data?token={TOKEN}&network={network}&phone={phone}&size={plan}"
         res             = requests.get(url=url, headers=headers).json()
-
         response_data   = {
             "status": "successful",
             "message": res['message']
