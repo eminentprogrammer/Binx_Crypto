@@ -1,66 +1,90 @@
-fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country=Nigeria", {
-    method: "GET",
-    headers: {
-        "Content-Type": "application/json",
-        "Accept": "application/json, text/plain, */*",
-        "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-    },
- }).then(response => response.json()).then(banks => {
-      // Get the select field
-      const bankField = document.getElementById('bank');
-      bankField.innerHTML = '<option value="0">Select Bank</option>';
-      // Add options to the select field
-      banks['data'].forEach(bank => {
-        let option = document.createElement('option');
-        option.text = bank.name;
-        option.value = bank.code;
-        option.setAttribute('data-subtext', bank.name);
-        bankField.appendChild(option);
-      });
-  })
-  .catch(console.error);
-  
-  const recipient_name = document.getElementById("recipient_name");
-  const accountInput = document.getElementById("recipient");
-  accountInput.addEventListener("keydown", (e) => {
-      recipient_name.value = ""
-      document.querySelector(".message_success-col").classList.remove('active');
-      document.querySelector(".message_error-col").classList.remove('active');
-      if (e.key === "Enter") {
-          e.preventDefault();
-          document.querySelector("#submit").click();
-      }
-  })
+const amountBox = document.querySelector("#amount_box");
 
-  document.getElementById("payment-form").addEventListener("submit", (e) => {
+function listBanks(){
+    fetch("/banks/", {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+            "Accept": "application/json, text/plain, */*",
+            "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
+        },
+    }).then(response => response.json()).then(banks => {
+        // Get the select field
+        const bankField = document.getElementById('bank');
+        bankField.innerHTML = '<option value="0">Select Bank</option>';
+        // Add options to the select field
+        banks[2].forEach(bank => {
+            let option = document.createElement('option');
+            option.text = bank.name;
+            option.value = bank.code;
+            option.setAttribute('data-subtext', bank.name);
+            bankField.appendChild(option);
+        });
+    }).catch (error => console.log(error));
+}
+listBanks();
 
-      e.preventDefault();
-      const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
-      const data = {
-          'recipient' : document.querySelector("#recipient").value,
-          'bank'     : document.querySelector("#bank").value,
-          'token'     : document.querySelector("#token").value
-      }
-      fetch("https://api.paystack.co/bank/resolve?account_number="+data.recipient+"&bank_code="+data.bank+"&currency=NGN", {
-          method: "GET",
-          headers: {
-            'Content-Type'     : 'application/json',
-            'Accept'           : 'application/json, text/plain, */*',
-            'Accept-language'  : 'en-GB,en-US;q=0.9,en;q=0.8',
-            'Authorization'    : 'Bearer '+data.token,
-          }
-      }).then(res => res.json())
-      .then(res => {
-          if (res.status == true){
-              recipient_name.value = res.data.account_name;
-              document.querySelector("#submit").classList.remove('active');
-              document.querySelector(".message_success-col").classList.add('active');
-              document.getElementById("message_success").innerHTML = res.message
-          }
-          else if (res.status == false){
-              document.querySelector(".message_error-col").classList.add('active');
-              document.getElementById("message_error").innerHTML = res.message
-          }
-      })
-      .catch(console.error);
-   });
+document.getElementById("payment-form").addEventListener("submit", async (e) => {
+    e.preventDefault();
+    const recipientInput = document.querySelector("#recipient");
+    const bankInput = document.querySelector("#bank");
+    const submitButton = document.querySelector("#submit");
+    const messageSuccessCol = document.querySelector(".message_success-col");
+    const messageErrorCol = document.querySelector(".message_error-col");
+    const messageSuccess = document.getElementById("message_success");
+    const messageError = document.getElementById("message_error");
+
+    const data = {
+        'recipient': recipientInput.value,
+        'bank': bankInput.value,
+    };
+    try {
+        const response = await fetch("/make_transfer/", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json, text/plain, */*',
+                'Content-Type': 'application/json', // Set the content type header
+                'Accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+            },
+            body: JSON.stringify(data), // Convert the data to a JSON string
+        });
+        if (!response.ok) {
+            throw new Error('Network response was not ok');
+        }
+        const res = await response.json();
+        if (res[0]) {
+            // Correctly access the account_name and message properties
+            submitButton.classList.remove('active');
+            messageSuccessCol.classList.add('active');
+            messageSuccess.innerHTML = res[1];
+            document.querySelector("#recipient_name").value = res[2].account_name;
+            document.querySelector("#submit").setAttribute("data-bs-toggle", "modal");
+            document.querySelector("#submit").setAttribute("data-bs-target", "#modalId");
+        } else {
+            messageErrorCol.classList.add('active');
+            // Ensure the error message is correctly accessed
+            messageError.innerHTML = res[1] || 'An error occurred.';
+        }
+    } catch (error) {
+        console.error('There was a problem with your fetch operation:', error);
+    }    
+});
+
+
+const recipient_name = document.getElementById("recipient_name");
+const accountInput = document.getElementById("recipient");
+accountInput.addEventListener("keydown", (e) => {
+    recipient_name.value = ""
+    document.querySelector(".message_success-col").classList.remove('active');
+    document.querySelector(".message_error-col").classList.remove('active');
+    if (e.key === "Enter") {
+        e.preventDefault();
+        document.querySelector("#submit").click();
+    }
+})
+
+
+function Transfer() {
+    document.querySelector(".message_success-col").classList.remove('active');
+    document.querySelector(".message_error-col").classList.remove('active');
+}

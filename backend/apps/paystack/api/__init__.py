@@ -30,7 +30,7 @@ class Transfer(BaseClass):
         return self.result_format(response)
     
     def resolve_account(self, data):
-        path = "/bank/resolve?account_number={}&bank_code={}&currency=NGN".format(data['account_number'], data['bank'])
+        path = "/bank/resolve?account_number={}&bank_code={}&currency=NGN".format(data['account_number'], data['bank_code'])
         response = self.make_request('GET', path)
         return self.result_format(response)
     

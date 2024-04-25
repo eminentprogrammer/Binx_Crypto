@@ -6,6 +6,10 @@ from django.views.decorators.csrf import csrf_exempt
 from apps.paystack.utils import load_lib
 from .auth import *
 
+from rest_framework.views import APIView
+from rest_framework.response import Response
+from rest_framework import serializers, permissions, status
+
 PayStackAPI = load_lib()
 paystack_instance = PayStackAPI()
 
@@ -19,23 +23,31 @@ def api(request):
     return JsonResponse(response_data, safe=False)
 
 
+
 # @csrf_exempt
-def listBanks(request):
-    banks = paystack_instance.list_banks()
-    return JsonResponse(banks, safe=False)
+class listBanks(APIView):
+    permission_classes = [permissions.AllowAny]
+    
+    def get(self, request, format=None):
+        banks = paystack_instance.list_banks()
+        return JsonResponse(banks, safe=False)
 
+class make_transfer(APIView):
+    permission_classes = [permissions.AllowAny]
+    
+    def get(self, request, format=None):
+        data = request.data
+        print(data)        
+        return Response({"data":data}, status=status.HTTP_200_OK)
 
-def make_transfer(request):
-    payload = {}
-    if request.method == "POST":
-        data        = json.loads(request.body)
-        
+    def post(self, request, format=None):
+        payload = {}
+        data = request.data
         payload['bank_code'] = data.get('bank')
         payload['account_number'] = data.get('recipient')
-            
-        account_info = paystack_instance.resolve_account(payload)
-        return JsonResponse(account_info, safe=True)
 
+        response = paystack_instance.resolve_account(payload)        
+        return Response(response, status=status.HTTP_200_OK)
     
 def buy_data(request):
     if request.method == "POST":
