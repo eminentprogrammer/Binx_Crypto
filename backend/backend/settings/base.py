@@ -34,6 +34,7 @@ INSTALLED_APPS = [
 
     'apps.api',
     'apps.accounts',
+    'apps.finance',
     'apps.paystack',
     'apps.binx_crypto',
     'apps.crypto_world',
@@ -113,20 +114,15 @@ PAYSTACK_API_URL    = env("PAYSTACK_URL")
 PAYSTACK_PUBLIC_KEY = env("PAYSTACK_TEST_KEY")
 PAYSTACK_SECRET_KEY = env("PAYSTACK_LIVE_KEY")
 
-PAYSTACK_HEADER = {
-    "Accept": "application/json, text/plain, */*",
-    "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-    "Authorization": f"Bearer {PAYSTACK_SECRET_KEY}",
-}
-
 PAYSTACK_SUCCESS_URL = "/payment/payment_successful"
 # PAYSTACK_FAILED_URL = "/google/api"
 # PAYSTACK_SUCCESS_URL = "/google/api"
 PAYSTACK_WEBHOOK_DOMAIN = 'tuteria.ngrok.io'
+
+
 KUDA_LIVE_URL   = env("KUDA_LIVE_URL")
 KUDA_TEST_URL   = env("KUDA_TEST_URL")
 KUDA_API_KEY    = env("KUDA_API_KEY")
-
 
 SME_TOKEN       = env("SME_TOKEN")
 

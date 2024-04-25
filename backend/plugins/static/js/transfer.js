@@ -57,6 +57,7 @@ document.getElementById("payment-form").addEventListener("submit", async (e) => 
             submitButton.classList.remove('active');
             messageSuccessCol.classList.add('active');
             messageSuccess.innerHTML = res[1];
+            document.querySelector("#transcx_id").innerHTML = res[2].transfer_id;
             document.querySelector("#recipient_name").value = res[2].account_name;
             document.querySelector("#submit").setAttribute("data-bs-toggle", "modal");
             document.querySelector("#submit").setAttribute("data-bs-target", "#modalId");
@@ -88,3 +89,43 @@ function Transfer() {
     document.querySelector(".message_success-col").classList.remove('active');
     document.querySelector(".message_error-col").classList.remove('active');
 }
+
+
+const completeTrans = document.querySelector("#completeTransfer");
+function Transact(){
+    const recipientInput = document.querySelector("#recipient");
+    const bankInput = document.querySelector("#bank");
+    const amountInput = document.querySelector("#amount");
+    const transactionPin = document.querySelector("#transactionPin");
+
+    const data = {
+        'transfer_id': document.querySelector("#transcx_id").innerHTML,
+        'pin': transactionPin.value
+    };
+
+    fetch("/complete_transfer/", {
+        method: "POST",
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Content-Type': 'application/json', // Set the content type header
+            'Accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
+        },
+        body: JSON.stringify(data), // Convert the data to a JSON string
+    })
+    .then(response => response.json())
+    .then(res => {
+        if (res.status == true){
+            window.location.href = "/transfer/"+data.transfer_id+"/";
+        }
+        else if (res.status == false){
+            document.querySelector(".message_error-col").classList.add('active');
+            document.getElementById("message_error").innerHTML = res.message
+        }
+    })
+    .catch(error => console.error('There was a problem with your fetch operation:', error));
+}
+
+completeTrans.addEventListener("submit", (e) => {
+    e.preventDefault();
+    Transact();
+});

@@ -58,26 +58,39 @@
                         <form id="payment-form" method="POST" class="container">
                             {% csrf_token %}
                             <div class="row">
-                                <div class="col-12 col-md-6 mx-auto">
+                                <div class="col-12 mx-auto">
                                     <div class="form-group my-2">
                                         <input type="number" inputmode="tel" class="form-control custom-input border-0" id="recipient_no" name="recipient_no" placeholder="Phone Number">
                                     </div>
+
                                     <select id="network" class="form-select custom-select mb-3 border-0" mobile="true" data-live-search="true" data-width="fit">
-                                        <option data-subtext="" value="0">Select Network</option>
-                                        <option data-subtext="" value="mtn">MTN</option>
-                                        <option data-subtext="" value="glo">GLO</option>
-                                        <option data-subtext="" value="airtel">AIRTEL</option>
-                                        <option data-subtext="" value="9mobile">9MOBILE</option>
+                                        <option value="0">Select Network</option>
+                                        <option value="mtn">MTN</option>
+                                        <option value="glo">GLO</option>
+                                        <option value="airtel">AIRTEL</option>
+                                        <option value="9mobile">9MOBILE</option>
                                     </select>
+
                                     <select id="data_plan" class="form-select custom-select border-0" mobile="true" data-live-search="true" data-width="fit">
-                                        <option data-subtext="">Select Plan</option>
-                                        <option data-subtext="" value="1GB">
-                                            <div class="data-option row">
-                                                <div class="col-12">1GB CG</div>
-                                                <div class="col-12">(₦400) Monthly</div>
-                                            </div>
+                                        <option value="">Select Plan</option>
+                                        <option value="500MB">
+                                            <div class="col-12">500MB</div>
                                         </option>
-                                        <option data-subtext="" value="7GB">7GB CG (₦1200) Monthly</option>
+                                        <option value="1GB">
+                                            <div class="col-12">1GB</div>
+                                        </option>
+                                        <option value="2GB">
+                                            <div class="col-12">2GB</div>
+                                        </option>
+                                        <option value="3GB">
+                                            <div class="col-12">3GB</div>
+                                        </option>
+                                        <option value="5GB">
+                                            <div class="col-12">5GB</div>
+                                        </option>
+                                        <option value="10GB">
+                                            <div class="col-12">10GB</div>
+                                        </option>
                                     </select>
                                     <button type="submit" class="btn btn-success my-4" id="submit">
                                         BuY
