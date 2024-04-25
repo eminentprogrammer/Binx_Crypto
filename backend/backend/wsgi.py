@@ -11,6 +11,6 @@ environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
 ENVIRONMENT = env('ENVIRONMENT')
 
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.'+ENVIRONMENT)
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings.'+ENVIRONMENT)
 
 application = get_wsgi_application()
