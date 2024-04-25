@@ -10,13 +10,6 @@ BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
-
-# Quick-start development settings - unsuitable for production
-# See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
-
-# SECURITY WARNING: keep the secret key used in production secret!
-# Raises Django's ImproperlyConfigured
-# exception if SECRET_KEY not in os.environ
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
@@ -113,6 +106,8 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
+
+
 PAYSTACK_API_URL    = env("PAYSTACK_URL")
 PAYSTACK_PUBLIC_KEY = env("PAYSTACK_TEST_KEY")
 PAYSTACK_SECRET_KEY = env("PAYSTACK_LIVE_KEY")
@@ -122,15 +117,15 @@ PAYSTACK_HEADER = {
     "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
     "Authorization": f"Bearer {PAYSTACK_PUBLIC_KEY}",
 }
+
 PAYSTACK_SUCCESS_URL = "/payment/payment_successful"
 # PAYSTACK_FAILED_URL = "/google/api"
 # PAYSTACK_SUCCESS_URL = "/google/api"
 PAYSTACK_WEBHOOK_DOMAIN = 'tuteria.ngrok.io'
-
-
 KUDA_LIVE_URL   = env("KUDA_LIVE_URL")
 KUDA_TEST_URL   = env("KUDA_TEST_URL")
 KUDA_API_KEY    = env("KUDA_API_KEY")
+
 
 SME_TOKEN       = env("SME_TOKEN")
 
@@ -162,3 +157,5 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'plugins/assets')
 # https://docs.djangoproject.com/en/4.2/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+# AUTH_MODEL = 'accounts.Account'

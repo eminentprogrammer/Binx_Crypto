@@ -15,10 +15,10 @@ class PaystackAPI(object):
         else:
             for key, value in kwargs.items():
                 setattr(self, key, value)
-
-        self.transaction_api = api.Transaction(self.make_request)
+        
         self.customer_api = api.Customer(self.make_request)
         self.transfer_api = api.Transfer(self.make_request)
+        self.transaction_api = api.Transaction(self.make_request)
 
 
     def make_request(self, method, path, **kwargs):
@@ -40,7 +40,12 @@ class PaystackAPI(object):
 
     def verify_payment(self, code, **kwargs):
         return self.transaction_api.verify_payment(code, **kwargs)
-
+    
+    def list_banks(self):
+        return self.transfer_api.get_banks()
+    
+    def resolve_account(self, data):
+        return self.transfer_api.resolve_account(data)
 
 def load_lib(config=None):
     """

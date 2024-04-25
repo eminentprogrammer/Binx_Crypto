@@ -9,10 +9,12 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 env = environ.Env(DEBUG=(bool, False))
+ENVIRONMENT = env('ENVIRONMENT')
+
 
 def main():
     """Run administrative tasks."""
-    os.environ.setdefault('DJANGO_SETTINGS_MODULE', env("SERVER"))
+    os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings.' + ENVIRONMENT)
     try:
         from django.core.management import execute_from_command_line
     except ImportError as exc:

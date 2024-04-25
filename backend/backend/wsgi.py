@@ -1,5 +1,4 @@
 import os
-import os
 import environ
 from pathlib import Path
 from django.core.wsgi import get_wsgi_application
@@ -10,8 +9,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Take environment variables from .env file
 environ.Env.read_env(os.path.join(BASE_DIR, '.env'))
 
+ENVIRONMENT = env('ENVIRONMENT')
 
-
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', env('SERVER'))
+os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'settings.'+ENVIRONMENT)
 
 application = get_wsgi_application()

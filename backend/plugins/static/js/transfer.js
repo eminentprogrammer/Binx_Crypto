@@ -1,4 +1,3 @@
-
 fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country=Nigeria", {
     method: "GET",
     headers: {
@@ -34,6 +33,7 @@ fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country
   })
 
   document.getElementById("payment-form").addEventListener("submit", (e) => {
+
       e.preventDefault();
       const csrftoken = document.querySelector('[name=csrfmiddlewaretoken]').value;
       const data = {
@@ -63,4 +63,4 @@ fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country
           }
       })
       .catch(console.error);
-   });  
+   });

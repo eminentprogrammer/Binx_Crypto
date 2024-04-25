@@ -28,7 +28,12 @@ class Transfer(BaseClass):
         path = "/bank"
         response = self.make_request('GET', path)
         return self.result_format(response)
-
+    
+    def resolve_account(self, data):
+        path = "/bank/resolve?account_number={}&bank_code={}&currency=NGN".format(data['account_number'], data['bank'])
+        response = self.make_request('GET', path)
+        return self.result_format(response)
+    
     def create_recipient(self, account_name, account_id, bank):
         path = "/transferrecipient"
         json = {
