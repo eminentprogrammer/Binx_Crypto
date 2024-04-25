@@ -116,7 +116,7 @@ PAYSTACK_SECRET_KEY = env("PAYSTACK_LIVE_KEY")
 PAYSTACK_HEADER = {
     "Accept": "application/json, text/plain, */*",
     "Accept-language": "en-GB,en-US;q=0.9,en;q=0.8",
-    "Authorization": f"Bearer {PAYSTACK_PUBLIC_KEY}",
+    "Authorization": f"Bearer {PAYSTACK_SECRET_KEY}",
 }
 
 PAYSTACK_SUCCESS_URL = "/payment/payment_successful"
