@@ -46,7 +46,8 @@ class make_transfer(APIView):
         payload['bank_code'] = data.get('bank')
         payload['account_number'] = data.get('recipient')
 
-        response = paystack_instance.resolve_account(payload)        
+        response = paystack_instance.resolve_account(payload)   
+        print(response)     
         return Response(response, status=status.HTTP_200_OK)
     
 def buy_data(request):
