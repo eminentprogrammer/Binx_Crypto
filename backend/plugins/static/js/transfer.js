@@ -44,10 +44,10 @@ fetch("https://api.paystack.co/bank?currency=NGN&transferRecipient=false&country
       fetch("https://api.paystack.co/bank/resolve?account_number="+data.recipient+"&bank_code="+data.bank+"&currency=NGN", {
           method: "GET",
           headers: {
-            "Content-Type"     : "application/json",
-            "Accept"           : "application/json, text/plain, */*",
-            "Accept-language"  : "en-GB,en-US;q=0.9,en;q=0.8",
-            "Authorization"    : "Bearer "+data.token,
+            'Content-Type'     : 'application/json',
+            'Accept'           : 'application/json, text/plain, */*',
+            'Accept-language'  : 'en-GB,en-US;q=0.9,en;q=0.8',
+            'Authorization'    : 'Bearer '+data.token,
           }
       }).then(res => res.json())
       .then(res => {
