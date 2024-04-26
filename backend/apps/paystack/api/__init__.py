@@ -7,7 +7,7 @@ class BaseClass(object):
         if response.status_code >= 400:
             result = response.json()
             return result['status'], result['message']
-
+        
         result = response.json()
         if callback:
             return callback(result)
@@ -152,6 +152,8 @@ class Transfer(BaseClass):
         } for x in data.get('data')]
 
 
+
+
 class Transaction(BaseClass):
     def verify_result(self, response, **kwargs):
         if response.status_code == 200:
@@ -225,6 +227,8 @@ class Transaction(BaseClass):
         }
         response = self.make_request('POST', path, json=json_data)
         return self.result_format(response)
+
+
 
     def get_transactions(self,
                          perPage=50,

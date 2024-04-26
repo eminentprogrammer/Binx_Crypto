@@ -39,6 +39,8 @@ document.getElementById("payment-form").addEventListener("submit", async (e) => 
         'bank': bankInput.value,
     };
     try {
+        document.getElementById('loader').style.display="flex";
+        document.getElementById("main").classList.add("d-none");
         const response = await fetch("/make_transfer/", {
             method: "POST",
             headers: {
@@ -49,8 +51,11 @@ document.getElementById("payment-form").addEventListener("submit", async (e) => 
             body: JSON.stringify(data), // Convert the data to a JSON string
         });
         if (!response.ok) {
+            document.getElementById('loader').style.display="none";
+            document.getElementById("main").classList.remove("d-none");
             throw new Error('Network response was not ok');
         }
+      
         const res = await response.json();
         if (res[0]) {
             // Correctly access the account_name and message properties
@@ -66,7 +71,13 @@ document.getElementById("payment-form").addEventListener("submit", async (e) => 
             // Ensure the error message is correctly accessed
             messageError.innerHTML = res[1] || 'An error occurred.';
         }
+      
+        document.getElementById('loader').style.display="none";
+        document.getElementById("main").classList.remove("d-none");
     } catch (error) {
+        document.getElementById('loader').style.display="none";
+        document.getElementById("main").classList.remove("d-none");
+        
         console.error('There was a problem with your fetch operation:', error);
     }    
 });

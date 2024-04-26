@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block extrastyles %}
+<style>
+
+</style>
+{% endblock %}
+{% block bgVideo %}{% endblock %}
+
+{% block content %}
+<div class="container">
+
+    <div class="row">
+        <div class="col-md-8 mx-auto">
+            <img src="#" alt="Preview Uploaded Image" id="file-preview" style="display:none;">
+            <button class="mt-4 btn btn-success" id="uploadButton" style="display: none;" onclick="uploadPhoto()">Upload</button>    
+        </div>
+    </div>
+
+    <div class="row mt-4">
+        <div class="col-md-8 mx-auto">
+            <video id="video" autoplay width="100%" class="rounded"></video>
+            <button id="capture" class="btn btn-danger">Capture</button>
+            <canvas id="canvas" style="display:none;"></canvas>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+
+{% block extrascripts %}
+<script> 
+    const preview = document.getElementById('file-preview');
+    const uploadButton = document.getElementById('uploadButton');
+
+    navigator.mediaDevices.getUserMedia({ video: true })
+    .then(function(stream) {
+       var video = document.getElementById('video');
+       video.srcObject = stream;
+    })
+    .catch(function(err) {
+       console.log("An error occurred: " + err);
+    });
+
+    document.getElementById('capture').addEventListener('click', function() {
+        var canvas = document.getElementById('canvas');
+        var video = document.getElementById('video');
+        canvas.width = video.videoWidth;
+        canvas.height = video.videoHeight;
+        canvas.getContext('2d').drawImage(video, 0, 0);
+        var dataUrl = canvas.toDataURL('image/jpeg');
+        preview.style.display = 'block';
+        uploadButton.style.display = 'block';
+        preview.src = dataUrl;
+        console.log(dataUrl);
+        // Now you can use dataUrl to upload the image
+    });
+
+    function uploadPhoto(dataUrl) {
+        document.getElementById('loader').style.display="flex";
+        document.getElementById("main").classList.add("d-none");
+
+        fetch('https://yourserver.com/upload', {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json'
+           },
+           body: JSON.stringify({
+             image: dataUrl
+           })
+        })
+        .then(response => response.json())
+        .then(data => {
+            document.getElementById('loader').style.display="none";
+            document.getElementById("main").classList.remove("d-none");
+
+            console.log(data)
+        })
+        .catch(error => {
+            document.getElementById('loader').style.display="none";
+            document.getElementById("main").classList.remove("d-none");
+
+            console.error('Error:', error)
+        });
+    }   
+
+</script>
+{% endblock %}

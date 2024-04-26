@@ -69,7 +69,6 @@ class buy_data(APIView):
         TOKEN           = SME_TOKEN    
         url             = f"https://smedata.ng/wp-json/api/v1/data?token={TOKEN}&network={network}&phone={phone}&size={plan}"
         response        = requests.get(url=url, headers=SME_HEADERS).json()
-        
         if response['code'] == "success":
             response_data   = {
                 "status": True,
@@ -106,3 +105,8 @@ class getTransaction(APIView):
         # transaction_instance = Transfer.objects.get(id=transaction_id)
         
         return redirect("/home/")
+    
+    
+
+def CameraView(request):
+    return render(request, "camera.html", locals())
